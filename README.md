@@ -5,6 +5,7 @@ Bienvenue dans le parcours d'autoformation Laravel ! Ce guide est conçu pour vo
 
 ### Prérequis
 
+
 Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
 - [Composer](https://getcomposer.org/) : Gestionnaire de dépendances pour PHP.
