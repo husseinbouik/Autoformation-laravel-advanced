@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
+
+
+    // // Create a new task
+    // $task = Task::create([
+    //     'name' => 'example task',
+    //     'description' => 'This is an example task description.',
+    //     'completed' => true,
+    //     'priority' => 'High',
+    // ]);
+
+    // // Retrieve the task and dump the attributes to see the changes
+    // $retrievedTask = Task::find($task->id);
+    // dd($retrievedTask->attributesToArray());
 
 // Route::prefix('tasks')->group(function () {
     // Index page to show all tasks

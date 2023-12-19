@@ -2,6 +2,8 @@
         <tr>
             <td>{{ $task->id }}</td>
             <td>{{ $task->name }}</td>
+            <td>{{ $task->completed }}</td>
+            <td>{{ $task->priority }}</td>
             <td>{!! $task->description !!}</td>
             <td class="project-actions text-right">
                 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-info btn-sm">

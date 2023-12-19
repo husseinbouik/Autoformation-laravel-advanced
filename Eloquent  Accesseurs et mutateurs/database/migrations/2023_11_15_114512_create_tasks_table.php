@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->boolean('completed')->default(false); // Added 'completed' column
+            $table->string('priority')->default('Medium'); // Added 'priority' column with default value 'Medium'
             $table->timestamps();
         });
     }

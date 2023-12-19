@@ -3,6 +3,8 @@
         <tr>
             <th>Identifiant</th>
             <th>Nom</th>
+            <th>Terminé</th>
+            <th>Priorité</th>
             <th>Description</th>
             <th>Action</th>
         </tr>
