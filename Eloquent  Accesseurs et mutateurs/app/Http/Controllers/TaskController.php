@@ -15,49 +15,30 @@ use Validator;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Http\Requests\FormTaskRequest;
 use Illuminate\Http\Request;
+use App\Repository\TaskRepository;
 use App\Models\Task;
 class TaskController extends Controller
-{
-    
-    // public function index(Request $request, Task $task) {
-    //     $search = $request->input('search');
-    
-    //     // $tasks = Task::all();
-    
-    //     if ($search) {
-    //         $query = Task::where('name', 'LIKE', '%' . $search . '%')
-    //             ->orWhere('description', 'LIKE', '%' . $search . '%');
-    
-    //         $tasks = $query->paginate(2);
-    //     } else {
-    //         // dd($tasks);
-    //         Task::get()->paginate(2); // Paginate even if no search
-    //     }
-    
-    //     return view('blog.index', compact('task', 'search'));
-    // }
-
- 
-    public function index(Request $request)
+{ public function index(Request $request)
     {
-        $search = $request->input('search');
-        $tasksPerPage = 2;
+        // Retrieve tasks directly from the Task model
+        $tasks = Task::paginate(5); // Adjust the pagination limit as needed
     
-        $query = Task::query();
+        if ($request->ajax()){
+            $searchTasks = $request->get('searchTasks');
+            $searchTasks = str_replace(" ", "%", $searchTasks);
     
-        if ($search) {
-            $query->where('name', 'LIKE', '%' . $search . '%')
-                  ->orWhere('description', 'LIKE', '%' . $search . '%');
+            $tasks = Task::where(function ($query) use ($searchTasks) {
+                $query->where('name', 'like', '%' . $searchTasks . '%')
+                    ->orWhere('description', 'like', '%' . $searchTasks . '%');
+            })
+                ->paginate(3);
+    
+            return view('blog.search', compact('tasks'))->render();
         }
     
-        $tasks = $query->paginate($tasksPerPage);
-    
-        if ($request->ajax()) {
-            return view('blog.tasks', compact('tasks', 'search'))->render();
-        }
-    
-        return view('blog.index', compact('tasks', 'search'));
+        return view('blog.index', compact('tasks'));
     }
+    
     
     
 
