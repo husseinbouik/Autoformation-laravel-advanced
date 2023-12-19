@@ -69,55 +69,55 @@ Découvrez les [accesseurs et mutateurs Eloquent](https://laravel.com/docs/eloqu
 
 ### Eloquent: Seed and Factory
 
-Comprenez comment utiliser [Eloquent Seed and Factory](https://laravel.com/docs/seeding) dans Laravel pour un remplissage efficace de la base de données.
+Comprenez comment utiliser [Eloquent Seed and Factory](https://laravel.com/docs/10.x/seeding) dans Laravel pour un remplissage efficace de la base de données.
 
 ### Front-end avec Vite
 
-Explorez l'intégration de [Vite](https://laravel-mix.com/docs/6.0/vite) pour le développement front-end dans Laravel.
+Explorez l'intégration de [Vite](https://laravel.com/docs/10.x/vite) pour le développement front-end dans Laravel.
 
 ### Composants Blade
 
-Maîtrisez l'utilisation des [composants Blade](https://laravel.com/docs/blade) pour des composants de vue efficaces et réutilisables.
+Maîtrisez l'utilisation des [composants Blade](https://laravel.com/docs/10.x/blade) pour des composants de vue efficaces et réutilisables.
 
 ### Laravel Breeze
 
-Commencez avec [Laravel Breeze](https://laravel.com/docs/breeze) pour une structure d'authentification minimale et élégante.
+Commencez avec [Laravel Breeze](https://laravel.com/docs/10.x/breeze) pour une structure d'authentification minimale et élégante.
 
 ### Politiques
 
-Apprenez sur les [politiques](https://laravel.com/docs/authorization) dans Laravel pour gérer la logique d'autorisation.
+Apprenez sur les [politiques](https://laravel.com/docs/10.x/authorization) dans Laravel pour gérer la logique d'autorisation.
 
 ### Fournisseur de services
 
-Comprenez le rôle d'un [fournisseur de services](https://laravel.com/docs/providers) dans l'amorçage d'une application Laravel.
+Comprenez le rôle d'un [fournisseur de services](https://laravel.com/docs/10.x/providers) dans l'amorçage d'une application Laravel.
 
 ### Événements
 
-Explorez l'utilisation des [événements](https://laravel.com/docs/events) pour gérer différentes actions dans votre application Laravel.
+Explorez l'utilisation des [événements](https://laravel.com/docs/10.x/events) pour gérer différentes actions dans votre application Laravel.
 
 ### Notifications
 
-Implémentez les [notifications](https://laravel.com/docs/notifications) pour envoyer des notifications sur différents canaux.
+Implémentez les [notifications](https://laravel.com/docs/10.x/notifications) pour envoyer des notifications sur différents canaux.
 
 ### Internationalisation
 
-Gérez les traductions et l'[internationalisation](https://laravel.com/docs/localization) dans les applications Laravel.
+Gérez les traductions et l'[internationalisation](https://laravel.com/docs/10.x/localization) dans les applications Laravel.
 
 ### Files d'attente
 
-Apprenez sur les [files d'attente](https://laravel.com/docs/queues) et comment gérer efficacement les tâches en arrière-plan.
+Apprenez sur les [files d'attente](https://laravel.com/docs/10.x/queues) et comment gérer efficacement les tâches en arrière-plan.
 
 ### Ressources API
 
-Créez et gérez les [ressources API](https://laravel.com/docs/8.x/eloquent-resources) pour construire des API puissantes.
+Créez et gérez les [ressources API](https://laravel.com/docs/10.x/eloquent-resources) pour construire des API puissantes.
 
 ### Tests avec Laravel
 
-Explorez les capacités de test de Laravel grâce à la documentation sur les [tests](https://laravel.com/docs/testing).
+Explorez les capacités de test de Laravel grâce à la documentation sur les [tests](https://laravel.com/docs/10.x/testing).
 
 ### Hébergement et Déploiement
 
-Comprenez le processus de [hébergement et déploiement](https://laravel.com/docs/deployment) pour les applications Laravel.
+Comprenez le processus de [hébergement et déploiement](https://laravel.com/docs/10.x/deployment) pour les applications Laravel.
 
 ### Hébergement partagé via SSH (Infomaniak)
 
