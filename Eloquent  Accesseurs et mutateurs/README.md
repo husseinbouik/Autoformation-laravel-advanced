@@ -1,49 +1,141 @@
-# lab-laravel-basic
 
-Le projet "lab-laravel-basic" est une application web développée avec Laravel, axée sur la gestion des tâches. Il inclut des opérations CRUD (Create, Read, Update, Delete) pour les tâches, une pagination et une fonctionnalité de recherche dans le tableau.
 
-## Travail à Faire
+### 1. Accessor: Capitalize Task Name on Retrieval
 
-- **Implémentation de la Gestion des Tâches : ** Effectuez les opérations CRUD pour les tâches.
-- **Mise en Place de la Pagination :** Mettez en œuvre la pagination pour améliorer l'expérience utilisateur lors du traitement d'un grand nombre de tâches.
-- **Mise en Place de la Recherche dans le Tableau :** Permettez aux utilisateurs de rechercher et de filtrer dynamiquement les tâches dans le tableau en utilisant AJAX pour une expérience utilisateur fluide et réactive.
+Add an accessor for the `name` attribute:
 
-## Critères de Validation
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-1. **Opérations CRUD :** Assurez-vous que les opérations CRUD pour les tâches sont correctement implémentées.
-2. **Pagination Fonctionnelle :** Vérifiez que la pagination améliore l'expérience utilisateur, notamment lors du traitement de nombreuses tâches.
-3. **Fonctionnalité de Recherche :** Assurez-vous que la fonction de recherche dans le tableau fonctionne de manière dynamique et réactive avec l'utilisation d'AJAX.
+class Task extends Model
+{
+    // ... existing code ...
 
-## Démarrage
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value)
+        );
+    }
 
-Pour commencer avec le projet, suivez ces étapes :
+    // ... existing code ...
+}
+```
 
-1. Clonez le dépôt : `git clone https://github.com/husseinbouik/lab-laravel-basic.git`
-2. Installez les dépendances : `composer install`
-3. Configurez votre fichier d'environnement : `cp .env.example .env`
-4. Générez la clé d'application : `php artisan key:generate`
-5. Configurez les paramètres de votre base de données dans le fichier `.env`.
-6. Exécutez les migrations de la base de données : `php artisan migrate`
-7. Lancez le serveur de développement : `php artisan serve`
+This accessor will automatically capitalize the first letter of the task name when you retrieve it.
 
-Visitez l'application dans votre navigateur à `http://localhost:8000`.
+### 2. Mutator: Convert Task Name to Lowercase on Setting
 
-## Utilisation
+Add a mutator for the `name` attribute:
 
-- Accédez à la fonctionnalité de gestion des tâches via l'interface web.
-- Utilisez la pagination pour naviguer efficacement à travers la liste des tâches.
-- Utilisez la fonctionnalité de recherche pour trouver des tâches spécifiques en fonction de critères.
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-## En savoir plus
+class Task extends Model
+{
+    // ... existing code ...
 
-Explorez la [documentation Laravel](https://laravel.com/docs) pour des informations approfondies sur Laravel et ses fonctionnalités.
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value),
+            set: fn (string $value) => strtolower($value)
+        );
+    }
 
-## Références
+    // ... existing code ...
+}
+```
 
-Consultez la documentation officielle de Laravel pour en savoir plus sur les opérations mentionnées ci-dessus : [Documentation Laravel](https://laravel.com/docs).
+This mutator will convert the task name to lowercase when you set it.
 
- [Autoformation Laravel](https://grafikart.fr/formations/laravel).
+### 3. Attribute Casting: Cast Completed Attribute to Boolean
 
-Assurez-vous de bien comprendre les concepts de base de Laravel, tels que la gestion des routes, les migrations de base de données, la création de vues, et l'utilisation du modèle MVC (Modèle-Vue-Contrôleur). N'hésitez pas à explorer d'autres fonctionnalités de Laravel pour améliorer vos compétences en développement web.
+Add the following property to cast the `completed` attribute to boolean:
 
+```php
+class Task extends Model
+{
+    // ... existing code ...
+
+    protected $casts = [
+        'completed' => 'boolean',
+    ];
+
+    // ... existing code ...
+}
+```
+
+This casting ensures that the `completed` attribute is treated as a boolean.
+
+### 4. Custom Cast: Create a Priority Custom Cast
+
+Generate a custom cast class:
+
+```bash
+php artisan make:cast PriorityCast
+```
+
+Edit the generated `PriorityCast` class in `app/Casts/PriorityCast.php`:
+
+```php
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+
+class PriorityCast implements CastsAttributes
+{
+    public function get($model, $key, $value, $attributes)
+    {
+        // Your custom logic for getting the priority value
+        return strtoupper($value);
+    }
+
+    public function set($model, $key, $value, $attributes)
+    {
+        // Your custom logic for setting the priority value
+        return strtolower($value);
+    }
+}
+```
+
+In your `Task` model, use the custom cast for the `priority` attribute:
+
+```php
+use App\Casts\PriorityCast;
+
+class Task extends Model
+{
+    // ... existing code ...
+
+    protected $casts = [
+        'priority' => PriorityCast::class,
+    ];
+
+    // ... existing code ...
+}
+```
+
+This custom cast allows you to define custom logic for getting and setting the `priority` attribute.
+
+### Testing
+
+Now, you can test these changes by creating or updating a task in your application. For example, in your controller or wherever you handle task creation/update:
+
+```php
+use App\Models\Task;
+
+public function createTask()
+{
+    // Create a new task
+    $task = Task::create([
+        'name' => 'example task',
+        'description' => 'This is an example task description.',
+        'completed' => true,
+        'priority' => 'High',
+    ]);
+
+    // Retrieve the task and dump the attributes to see the changes
+    $retrievedTask = Task::find($task->id);
+    dd($retrievedTask->attributesToArray());
+}
+```
 
